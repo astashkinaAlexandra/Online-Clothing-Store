@@ -1,0 +1,20 @@
+.featurette-divider {
+    margin: 120px 0;
+}
+
+.featurette {
+    overflow: hidden;
+    margin-bottom: 120px;
+}
+
+.featurette-heading {
+    font-size: 50px;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -1px;
+    padding-bottom: 20px;
+}
+
+p {
+    opacity: .7;
+}

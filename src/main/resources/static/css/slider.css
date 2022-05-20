@@ -1,0 +1,59 @@
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+
+.carousel {
+    margin-bottom: 1rem;
+}
+
+.carousel-caption {
+    bottom: 3rem;
+    z-index: 10;
+}
+
+.carousel-item {
+    height: 100vh;
+}
+
+.carousel-item > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel-caption {
+    color: black;
+}
+
+.ltext-101 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    line-height: 1.2857;
+}
+
+.ltext-201 {
+    font-family: 'Playfair Display', serif;
+    font-size: 60px;
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+.cl2 {
+    color: #333;
+}
+
+.p-b-43 {
+    padding-bottom: 43px;
+}
+
+.p-t-19 {
+    padding-top: 19px;
+}

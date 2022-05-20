@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Модная и стильная женская одежда - купить в интернет-магазине «Fashi.on»</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../static/images/favicon.ico"/>
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
+    <!-- Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Poppins&display=swap"
+          rel="stylesheet">
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../static/css/cart.css" th:href="@{/css/cart.css}" rel="stylesheet" type="text/css"/>
+
+    <!--    <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" type="text/css"/>-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light position-absolute">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" th:href="@{/}">Fashi.on</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/about}">About</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/products}">Products</a></li>
+            </ul>
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/cart}" role="button"><i class="fa-solid fa-cart-shopping"></i></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" sec:authentication="principal.username">User</a></li>
+                        <li>
+                            <hr class="dropdown-divider"/>
+                        </li>
+                        <li sec:authorize="isAuthenticated()"><a class="dropdown-item" th:href="@{/logout}">Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Shopping Cart-->
+<main class="page">
+    <section class="shopping-cart dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2>Shopping Cart</h2>
+            </div>
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-12 col-lg-8">
+                        <div class="items">
+                            <div class="product">
+                                <div class="row" th:each="product: ${cartProducts}">
+                                    <div class="col-md-3">
+                                        <a th:href="@{/item/{id}(id=${product.id})}">
+                                            <img class="img-fluid mx-auto d-block image"
+                                                 th:attr="src=@{'data:image/jpeg;base64,'+${product.image}}">
+                                        </a>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="info">
+                                            <div class="row">
+                                                <div class="col-md-5 product-name">
+                                                    <div class="product-name">
+                                                        <p th:text="${product.name}"></p>
+                                                        <div class="product-info">
+                                                            <div th:text="${product.description}"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 quantity">
+                                                    <label for="quantity">Quantity:</label>
+                                                    <input id="quantity" type="number" value="1"
+                                                           class="form-control quantity-input">
+                                                </div>
+                                                <div class="col-md-2 price">
+                                                    <span>$<span th:text="${product.price}"></span></span>
+                                                </div>
+                                                <div class="col-md-2 price">
+                                                    <a class="delete" title="Delete" data-toggle="tooltip"
+                                                       th:href="@{/cart/delete/{id}(id=${product.id})}">Delete</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-4">
+                        <div class="summary">
+                            <h3>Summary</h3>
+                            <div class="summary-item"><span class="text">Subtotal</span><span class="price">$<span
+                                    th:text="${total}"></span></span>
+                            </div>
+                            <div class="summary-item"><span class="text">Discount</span><span
+                                    class="price">$0</span>
+                            </div>
+                            <div class="summary-item"><span class="text">Shipping</span><span
+                                    class="price">$0</span>
+                            </div>
+                            <div class="summary-item"><span class="text">Total</span><span class="price">$<span
+                                    th:text="${total}"></span></span>
+                            </div>
+                            <button type="button" class="btn btn-primary btn-lg btn-block">Checkout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

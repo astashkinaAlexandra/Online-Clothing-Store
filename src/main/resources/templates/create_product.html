@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Модная и стильная женская одежда - купить в интернет-магазине «Fashi.on»</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+<!-- Navigation-->
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" th:href="@{/}">Fashi.on</a>
+</nav>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <div class="card-body">
+                <div class="card-title">
+                    <h1 class="text-center">Create New Product</h1>
+                </div>
+                <form th:action="@{/products}" th:object="${product}" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="exampleFormControlFile1">Product Image</label>
+                        <input
+                                type="file"
+                                name="file"
+                                class="form-control-file"
+                                placeholder="Enter Product image"
+                                id="exampleFormControlFile1">
+                    </div>
+                    <div class="form-group">
+                        <label>Product Name</label>
+                        <input
+                                type="text"
+                                name="name"
+                                th:field="*{name}"
+                                class="form-control"
+                                placeholder="Enter Product name"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label>Product Description</label>
+                        <input
+                                type="text"
+                                name="description"
+                                th:field="*{description}"
+                                class="form-control"
+                                placeholder="Enter Product description"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label>Product Price</label>
+                        <input
+                                type="text"
+                                name="price"
+                                th:field="*{price}"
+                                class="form-control"
+                                placeholder="Enter Product Price"
+                        />
+                    </div>
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
